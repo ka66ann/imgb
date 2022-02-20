@@ -13,7 +13,7 @@ compatibility_date = "2021-10-06"
 
 [[kv-namespaces]]
 binding = "G"
-id = "2d18c83a8de04b78898e0596d6ad321b"
+id = "6340cd10004744ec9e48f7d248513f2e"
 
 [build]
 command = "npm install && node build.js"
