@@ -820,8 +820,8 @@ var init_mod = __esm({
 });
 
 // src/main.js
-var require_main = __commonJS2({
-  "src/main.js"(exports2, module2) {
+var require_main = __commonJS({
+  "src/main.js"(exports, module) {
     var { Database: Database2 } = (init_mod(), __toCommonJS(mod_exports));
     var D = new Database2({ projectId: "pbl-6a" });
     var ref;
@@ -864,10 +864,10 @@ var q = {
         }
       }
     };
-    var db2 = function() {
+    var db = function() {
       var del = async (x) => await Del(x);
       var get = async (x) => await Get(x);
-      var list = async (x) => await List2(x);
+      var list = async (x) => await List(x);
       var add = async (x, z) => await Add(x, z);
       var put = async (x, z) => await Put(x, z);
       return {
@@ -878,7 +878,7 @@ var q = {
         get
       };
     }();
-    module2.exports = db2;
+    module.exports = db;
   }
-})
+});
 module.exports = require_main()
