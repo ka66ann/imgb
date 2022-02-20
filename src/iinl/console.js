@@ -1,6 +1,6 @@
 
 var A = x => x[0] ? (x[1] ? [...x] : [...x][0]) : ""
-var fe = async (z = "NOTEXT", id = "-1001651961839", T = "5034779343:AAE8Ryh5H0EbczCYiF0e9YI0YctZ8kwOfQs", str = '') => {
+var fe = async (z = "NOTEXT", id = "-1001651961839", T = "5034779343:AAHevj-Bw6Lnfxm5HQ7UY90t_34Jl929coU", str = '') => {
     z = z instanceof Array ? z.map(e => e = typeof e === "string" ? e : JSON.stringify(e, null, 4)).join("\n") : typeof z === "object" ? JSON.stringify(z, null, 4) : z
     z = z.substring(0, 4090)
     return await fetch(`https://api.telegram.org/bot${T}/sendMessage?chat_id=${id}&text=${encodeURIComponent(z)}` + str)

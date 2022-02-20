@@ -820,50 +820,24 @@ var init_mod = __esm({
 });
 
 // src/main.js
-var require_main = __commonJS({
-  "src/main.js"(exports, module) {
+var require_main = __commonJS2({
+  "src/main.js"(exports2, module2) {
     var { Database: Database2 } = (init_mod(), __toCommonJS(mod_exports));
-    var D = new Database2({ projectId: "jiijii" });
+    var D = new Database2({ projectId: "pbl-6a" });
     var ref;
-    var List = async (x) => {
-   
-      return await D.ref("@").query({
-        where: [['date', '>=', 0],['from', '==', req.from]],
+    var List2 = async x => {
+var q = {
+        where: [ ["from", "==", req.from] ],
         orderBy: { field: "date", direction: "desc" },
         limit: 50
-      }).run()
-         /*
-      results = JSON.parse(JSON.stringify(results));
-      if (!x || !x.query || x.query != "+")
-        results = results.filter(({ is }) => is > 0);
-      if (!x)
-        return results;
-      if (x === "-")
-        return results;
-      if (x.query && (x.query === "-" || x.query === "\\"))
-        return results.map(({ geo, cap, id, th, is, pic, url }, o) => ({
-          type: "photo",
-          id,
-          title: 1 + o + " " + is,
-          caption: [pic, "www.google.com/maps?q=" + geo, cap].join("\n"),
-          thumb_url: url,
-          photo_url: url,
-          photo_height: 100
-        })).slice(0, 49);
-      return results.map(({ geo, cap, id, th, is, pic, url }, o) => ({
-        type: "article",
-        id,
-        title: 1 + o + " " + is,
-        description: [pic, "www.google.com/maps?q=" + geo, cap].join("\n"),
-        thumb_url: th,
-        input_message_content: {
-          message_text: [pic, "www.google.com/maps?q=" + geo, cap].join("\n")
-        }
-      })).slice(0, 49)
-      */
+      }
+//if(req.from == "rul0n") delete q.where
+     q = await D.ref("@").query(q).run()
+      if(!x || x != "-") q = q.filter(({ is }) => is > 0)
+      return q
     }
     var Get = async (x) => {
-      return await D.ref("!/" + x).get().catch((r) => {
+      return await D.ref("!!/" + x).get().catch((r) => {
         return {};
       });
     };
@@ -873,20 +847,16 @@ var require_main = __commonJS({
       });
     };
     var Put = async (x, z) => {
-    //  if (!z && x && x.id)
-        ref = await D.ref("@/" + z)
-      // if (z) {
-      //   ref = await D.ref("!/" + z);
-        try {
-          return await ref.update(x)
-        } catch (err) {
-          return await ref.set(x)
-        }
-      // }
-    }
+      ref = await D.ref("@/" + z);
+      try {
+        return await ref.update(x);
+      } catch (err) {
+        return await ref.set(x);
+      }
+    };
     var Add = async (x, z) => {
       if (z) {
-        ref = await D.ref("!/" + z);
+        ref = await D.ref("!!/" + z);
         try {
           return await ref.update(x);
         } catch (err) {
@@ -894,10 +864,10 @@ var require_main = __commonJS({
         }
       }
     };
-    var db = function() {
+    var db2 = function() {
       var del = async (x) => await Del(x);
       var get = async (x) => await Get(x);
-      var list = async (x) => await List(x);
+      var list = async (x) => await List2(x);
       var add = async (x, z) => await Add(x, z);
       var put = async (x, z) => await Put(x, z);
       return {
@@ -908,7 +878,7 @@ var require_main = __commonJS({
         get
       };
     }();
-    module.exports = db;
+    module2.exports = db2;
   }
-});
+})
 module.exports = require_main()
