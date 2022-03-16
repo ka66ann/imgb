@@ -3,7 +3,16 @@ import './po.js'
 export const onRequest = async ({
   params: { slug }
 }) => {
+            //    const image = await fetch(`https://ka6.netlify.app/https%3A%2F%2F${encodeURIComponent(slug)}`)
 
+            // const {
+            //     readable,
+            //     writable
+            // } = new TransformStream()
+            // image.body.pipeTo(writable)
+            // const r = new Response(readable, image)
+            // //r.headers.set('Cache-Control', 'max-age=0')
+            // return r
 return new Response(html(), { status: 200, headers: { 'Content-Type': 'text/html;charset=utf-8' } })
 }
 
@@ -22,7 +31,7 @@ return new Response(html(), { status: 200, headers: { 'Content-Type': 'text/html
       <div class="article">
          <article class="article__content">
             <figure>
-               <img src="https://i.ibb.co/t8sYgVr/i.png">
+               <img src="https://i.ibb.co/m5f2gPz/i.png">
                <figcaption>ZZZ</figcaption>
             </figure>
             <h1><a href="https://telegram.org/faq">Про нас</a></h1>

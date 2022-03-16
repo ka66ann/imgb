@@ -1,5 +1,4 @@
 if (typeof L === 'undefined') globalThis.L = {}
-if (typeof B === 'undefined') globalThis.B = {}
 import "./iinl/66o"
 
 

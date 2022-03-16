@@ -34,11 +34,10 @@ if (req.text && req.text.startsWith(".")) {
         })
         delete req.entities
     }
-        if (req.document && req.document.mime_type.startsWith("image")) {
+        if (req.document && (req.document.mime_type.startsWith("image") || req.document.mime_type.startsWith("video"))) {
         req.photo = [{
             file_size: req.document.file_size,
-            file_id: req.document.file_id,
-          width: 1280
+            file_id: req.document.file_id
         }]
         delete req.document
     }

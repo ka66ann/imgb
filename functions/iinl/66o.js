@@ -1,9 +1,53 @@
-var J = ["jirrj", "wo_va", "shas4a", "rul0n"]
+import '../po.js'
 require('./console')
 require('./db')
 var db = require_db()
 //import { bot } from "./bot"
 import { upd } from "./upd"
+
+async function handleinline(d){
+  
+    let inline_query_id = d.id
+    let query = d.query
+    let offset = d.offset.split('|')
+    let res_data = []
+    if(offset.length < 2){
+        offset = [inline_query_id,0]
+    }
+    offset[1] = parseInt(offset[1])
+    let hh = j//shuffle(j,offset[0]) // 随机排序
+   
+    if(query !== '')
+        hh = hh.filter(h=>{
+            return h.slug.toLowerCase().indexOf(query.toLowerCase()) > -1 || h.img.indexOf(query) > -1
+        })
+    for (let i = 0; i < 49; i++) {
+        let h = hh[offset[1] * 49 + i]
+        if(h !== undefined)
+            res_data.push({
+                id: (offset[1] * 49 + i).toString(),
+                title: h.name+" #"+(String(h.id).padStart(3, '0')),
+                description: h.ab,
+                thumb_url: h.th,
+                type: 'article',
+                input_message_content: {
+                    message_text: h.name
+                }
+            })
+    }
+    offset[1] ++
+    if(res_data.length < 49) // 一次会返回 49 条 如果结果小于 49 说明翻完了，那么就不用给新的 offset 了
+        offset = []
+    return {
+        chat_id: d.chat,
+        method: "answerInlineQuery",
+        inline_query_id: inline_query_id,
+        cache_time: 0,
+        results: JSON.stringify(res_data),
+        next_offset: offset.join('|')
+    }
+}
+
 globalThis.Z = async function(r) {
         try {
         await upd(r)
@@ -72,25 +116,26 @@ var u = r2.data.url
     B.method = "sendphoto";
   }
   if (req.type == "inline_query") {
-    var rrr = await db.list(req.query);
-    var l = rrr.length;
-    rrr = await rrr.map(({ ref, date, from, ll, id }, o) => ({
-      type: "article",
-      id,
-      title: l - o + " - " + id,
-      "description": ref,
-      "thumb_url": `https://i.ibb.co/${id}/i.png`,
-      "input_message_content":  {
-       "message_text": [ref, "ibb.co/" + id, "www.google.com/maps?q=" + ll].join("\n")
-     }
-    }));
-    B = {
-      method: "answerInlineQuery",
-      cache_time: 0,
-      is_personal: true,
-      inline_query_id: req.id,
-      results: rrr
-    }
+    B = await handleinline(req)
+    // var rrr = await db.list(req.query);
+    // var l = rrr.length;
+    // rrr = await rrr.map(({ ref, date, from, ll, id }, o) => ({
+    //   type: "article",
+    //   id,
+    //   title: l - o + " - " + id,
+    //   "description": ref,
+    //   "thumb_url": `https://i.ibb.co/${id}/i.png`,
+    //   "input_message_content":  {
+    //    "message_text": [ref, "ibb.co/" + id, "www.google.com/maps?q=" + ll].join("\n")
+    //  }
+    // }));
+    // B = {
+    //   method: "answerInlineQuery",
+    //   cache_time: 0,
+    //   is_personal: true,
+    //   inline_query_id: req.id,
+    //   results: rrr
+    // }
   }
  // if (req.message_id && !req.invoice && !req.sender_chat) await fetch(`https://api.telegram.org/bot${TOKEN}/deleteMessage?chat_id=${req.chat}&message_id=${req.message_id}`);
 }

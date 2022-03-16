@@ -1,4 +1,4 @@
-
+const { W2B } = require('./index.js')
 
 export async function onRequestPost(context) {
   var { request } = context
@@ -24,9 +24,10 @@ export async function onRequestPost(context) {
   try {
     
   globalThis.B = {}
-   await Z(request)
-   //await Post(request)
-   //console.info(B)
+   //await Z(request)
+   request = await request.json()
+   await W2B(request)
+   console.info(B)
          return new Response(JSON.stringify(B, null, 4), {
     headers: {
       'content-type': 'application/json',
@@ -51,9 +52,11 @@ export async function onRequestPost(context) {
 
 }
 
-async function Post(request) {
+async function vib(re) {
 
-//     var re = await (request.clone()).json()
+B = await (re.clone()).json()
+
+
 // re.T = "5034779343:AAE8Ryh5H0EbczCYiF0e9YI0YctZ8kwOfQs"
 // B = await fetch(
 //       `https://ii.1l.workers.dev`,
@@ -93,3 +96,4 @@ async function Post(request) {
     //     return new Response({ status: 200 })
     // }
 }
+
