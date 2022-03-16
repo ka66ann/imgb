@@ -1,0 +1,8 @@
+node_modules
+.mf
+.env
+yarn.lock 
+.pages
+
+.DS_Store
+

@@ -1,16 +1,8 @@
 {
-  "name": "esbuild-workers-template",
-  "version": "1.0.0",
-  "module": "dist/out.mjs",
-  "dependencies": {
-    "@cloudflare/wrangler": "^1.19.6",
-    "esbuild": "latest"
-  },
   "scripts": {
-    "g": "git add . && git commit -m \"first commit\" && git push -u origin main -f",
-    "u": "ncu -u && npm update",
-    "w": "wrangler publish",
-    "t": "nodemon t.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "g": "git add . && git commit -m \"first commit\" && git push -u origin main -f"
+  },
+  "dependencies": {
+    "@cloudflare/workers-types": "^3.4.0"
   }
 }
