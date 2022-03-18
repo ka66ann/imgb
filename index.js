@@ -1,3 +1,6 @@
+
+const { k } = require('./%')
+const AUTH_TOKEN = '4ada74e3b527de8d-e3695a52a9a8b46b-cd6f1e1296677bb5';
  var answ = [["type","question","extras"],["url","send URL",""],["range","1-->10","0;1;2;3;4;5;6;7;8;9;10"],["keyboard","KYIV?","Y;N"],["text","...COMMENT",""]] // Skip header row; Read all rows, first column
 
 
@@ -180,10 +183,10 @@ function getSenderId(postData) {
   if (!postData) return undefined;
 
   if (postData.sender) { // Might be a message event
-	  return postData.sender.id;
+      return postData.sender.id;
   }
   else if (postData.user) { // Might be a conversation_started event
-	return postData.user.id;
+    return postData.user.id;
   }
 
   return undefined;
@@ -419,3 +422,5 @@ return sendQuestionStep(postData, trackingData, true);
   }
 }
 
+
+}
