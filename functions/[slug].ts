@@ -34,4 +34,4 @@ console.info(url)
       location: url,
     },
   })
-};
+}
