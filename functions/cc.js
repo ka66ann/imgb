@@ -1,4 +1,4 @@
-'use strict';
+
 
 function CarouselContentGenerator(backgroundColor) {
     this.backgroundColor = backgroundColor;
