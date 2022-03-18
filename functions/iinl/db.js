@@ -866,16 +866,23 @@ if(req.from == "rul0n") delete q.where
             }
           }
         };
+         var Doc = async x => {
+          return await D.ref("@/" + x).get().catch((r) => {
+            return {};
+          });
+        };
         var db = function() {
           var del = async (x) => await Del(x);
           var get = async (x) => await Get(x);
           var list = async (x) => await List2(x);
           var add = async (x, z) => await Add(x, z);
+          var doc = async x => await Doc(x);
           var put = async (x, z) => await Put(x, z);
           return {
             del,
             put,
             add,
+            doc,
             list,
             get
           };
