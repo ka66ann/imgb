@@ -1,3 +1,1 @@
-"# o3" 
-"# o6c" 
-
+# Hacker news clone using Remix

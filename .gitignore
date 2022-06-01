@@ -1,8 +1,6 @@
 node_modules
-.mf
+
+/.cache
+/functions/\[\[path\]\].js
+/public/build
 .env
-yarn.lock 
-.pages
-
-.DS_Store
-
