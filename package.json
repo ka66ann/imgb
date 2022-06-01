@@ -11,6 +11,7 @@
     "build:css": "npm run generate:css -- --minify",
     "generate:css": "npx tailwindcss -o ./app/tailwind.css",
     "dev:css": "npm run generate:css -- --watch"
+    
   },
   "dependencies": {
     "@remix-run/cloudflare": "^1.5.1",
